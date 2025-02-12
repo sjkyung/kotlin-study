@@ -1,7 +1,5 @@
-package com.easyshop.kotlinstudy.domain.user.service
+package com.easyshop.kotlinstudy.domain.user
 
-import com.easyshop.kotlinstudy.domain.user.User
-import com.easyshop.kotlinstudy.domain.user.repository.UserRepository
 import org.springframework.stereotype.Service
 
 

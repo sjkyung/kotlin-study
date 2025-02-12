@@ -1,6 +1,5 @@
-package com.easyshop.kotlinstudy.domain.user.repository;
+package com.easyshop.kotlinstudy.domain.user;
 
-import com.easyshop.kotlinstudy.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.easyshop.kotlinstudy.controller.request
+package com.easyshop.kotlinstudy.api.board.request
 
 data class BoardRequest(
     val title: String,
