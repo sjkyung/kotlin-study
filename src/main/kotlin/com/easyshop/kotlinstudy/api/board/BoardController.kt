@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*
 class BoardController(private val boardService: BoardService) {
 
 
+    /**
+     * 전체 조회 API
+     */
     @GetMapping("/boards")
     fun testGetBoards(): ResponseEntity<List<BoardFindResponse>> {
         return ResponseEntity.ok(boardService.findAll())
