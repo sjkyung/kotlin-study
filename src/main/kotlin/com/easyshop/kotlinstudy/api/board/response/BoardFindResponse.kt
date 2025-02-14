@@ -1,8 +1,8 @@
 package com.easyshop.kotlinstudy.api.board.response
 
 data class BoardFindResponse(
-    val id: Int,
+    val id: Long,
     val title: String,
-    val boardId: String
+    val writer: String
 ) {
 }

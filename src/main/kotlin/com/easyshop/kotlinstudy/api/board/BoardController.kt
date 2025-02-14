@@ -39,5 +39,13 @@ class BoardController(private val boardService: BoardService) {
         return boardService.deleteBoard(id)
     }
 
+    @GetMapping("/boards1/{id}")
+    fun testGetBoards1(@PathVariable id: Int): List<BoardFindResponse> {
+        return boardService.getAllBoards(id);
+    }
 
+    @GetMapping("/boards2/{id}")
+    fun testGetBoards2(@PathVariable id: Int): List<BoardFindResponse> {
+        return boardService.getByFilter(id);
+    }
 }
