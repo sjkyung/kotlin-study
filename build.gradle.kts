@@ -27,21 +27,21 @@ repositories {
 
 dependencies {
 
-    //kotlin-jdsl
-    val jdslVersion = "2.2.1.RELEASE"
 
     implementation("com.linecorp.kotlin-jdsl:jpql-dsl:3.5.4")
     implementation("com.linecorp.kotlin-jdsl:jpql-render:3.5.4")
     implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:3.5.4")
 
+
+    //kotlin-jdsl
+    val jdslVersion = "2.2.1.RELEASE"
     implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
     implementation("org.hibernate:hibernate-core:6.2.4.Final") // up to 6
     // if using spring-data-jpa
     implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
 
-
-
-
+    //corutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")  // 코루틴 의존성 추가
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
