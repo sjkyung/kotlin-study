@@ -18,7 +18,9 @@ class BoardJdslRepository(
     private val queryFactory: SpringDataQueryFactory
 ) {
 
-
+    /**
+     * jdsl 적용
+     */
     fun reaToBoard(id: Long): List<BoardFindResponse> {
         val context = JpqlRenderContext()
 

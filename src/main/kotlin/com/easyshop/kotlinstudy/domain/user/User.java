@@ -12,11 +12,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //아이디
 
-    private String name;
+    private String name; // 이름
 
-    private String email;
+    private String email; //이메일
 
 
     public User(Long id, String name, String email) {

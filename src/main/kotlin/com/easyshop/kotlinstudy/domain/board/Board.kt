@@ -6,10 +6,10 @@ import jakarta.persistence.*
 @Table(name = "BOARD")
 class Board(
     @Column(name = "title")
-    var title: String,
+    var title: String, // 제목
 
     @Column(name = "writer_id")
-    var writer: String
+    var writer: String //생성자
 ) {
 
     @Id

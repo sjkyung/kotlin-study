@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.*
 class UserController(private val testService: UserService) {
 
 
+    /**
+     * 유저 전체 조회
+     */
     @GetMapping("/Users")
     fun testApi(): ResponseEntity<List<User>> {
         return ResponseEntity.ok(testService.getUsers());
     }
 
 
+    /**
+     * 유저 상세 조회
+     */
     @PostMapping("/Users")
     fun testPostApi(@RequestBody user: User) {
         testService.saveUser(user)

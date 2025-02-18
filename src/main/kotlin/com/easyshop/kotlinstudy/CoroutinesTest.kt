@@ -3,6 +3,9 @@ package com.easyshop.kotlinstudy
 import kotlinx.coroutines.*
 import kotlin.system.exitProcess
 
+/**
+ * 코루틴 예제 코드
+ */
 class CoroutinesTest {
 
     suspend fun runAsyncTasks() = coroutineScope {
@@ -48,13 +51,14 @@ class CoroutinesTest {
             }
         }
 
+        //비동기 연결해서 비동기 처리
         val futureChaining = async {
             "Hello".also {
                 delay(1000)
             } + "World"
         }
 
-
+        //실행이 모두 끝날때 까지 호출부 코루틴을 일시중단
         joinAll(future,future2,combinedFuture,futureWithErrorHandling,futureChaining)
 
 

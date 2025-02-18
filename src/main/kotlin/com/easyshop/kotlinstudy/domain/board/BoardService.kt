@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable
 @Service
 class BoardService(private val boardRepository: BoardRepository, private val boardJdslRepository: BoardJdslRepository) {
 
+    /**
+     * 전체 조회
+     */
     fun findAll(): List<BoardFindResponse> {
         return boardRepository
             .findAll()
@@ -17,6 +20,9 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
             }
     }
 
+    /**
+     * 상세 조회(단건)
+     */
     fun findById(id: Int): BoardFindResponse? {
         val board = boardRepository
             .findById(id.toLong()).orElse(null)
@@ -24,7 +30,10 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
         return board?.let { BoardFindResponse(board.id, board.title, board.writer) }
     }
 
-
+    /**
+     * board 저장
+     */
+    @Transactional
     fun saveBoard(boardRequest: BoardRequest): BoardFindResponse {
         val board = Board(boardRequest.title, boardRequest.writer)
         return boardRepository.save(board).id?.let { id ->
@@ -32,6 +41,9 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
         } ?: throw IllegalStateException("Failed save Board")
     }
 
+    /**
+     * board 수정
+     */
     @Transactional
     fun updateBoard(boardId: Int, boardRequest: BoardRequest) {
         val board = boardRepository
@@ -40,14 +52,23 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
         board.updateTitle(boardRequest.title, boardRequest.writer);
     }
 
+    /**
+     * board 삭제
+     */
     fun deleteBoard(@PathVariable id: Int) {
         boardRepository.deleteById(id.toLong())
     }
 
+    /**
+     * jdsl repository 적용
+     */
     fun getAllBoards(id: Int): List<BoardFindResponse> {
         return boardJdslRepository.reaToBoard(id.toLong());
     }
 
+    /**
+     * jdsl 신버전
+     */
     fun getByFilter(id: Int): List<BoardFindResponse> {
         return boardRepository.findAll() {
             selectNew<BoardFindResponse>(
