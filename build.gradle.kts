@@ -28,28 +28,39 @@ repositories {
 dependencies {
 
 
+    //kotlin-jdsl
     implementation("com.linecorp.kotlin-jdsl:jpql-dsl:3.5.4")
     implementation("com.linecorp.kotlin-jdsl:jpql-render:3.5.4")
     implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:3.5.4")
 
-
-    //kotlin-jdsl
     val jdslVersion = "2.2.1.RELEASE"
     implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:$jdslVersion")
     implementation("org.hibernate:hibernate-core:6.2.4.Final") // up to 6
-    // if using spring-data-jpa
+    // if using kotlin spring-data-jpa
     implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:$jdslVersion")
 
     //corutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")  // 코루틴 의존성 추가
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    //kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    //spring + lombok
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.projectlombok:lombok")
+
+    //graphql
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+    testImplementation("org.springframework.graphql:spring-graphql-test")
+    testImplementation("org.springframework:spring-webflux")
+
+    //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+
+    //h2 DB
     runtimeOnly("com.h2database:h2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

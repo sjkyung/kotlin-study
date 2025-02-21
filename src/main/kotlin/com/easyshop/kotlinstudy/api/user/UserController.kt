@@ -1,5 +1,6 @@
 package com.easyshop.kotlinstudy.api.user
 
+import com.easyshop.kotlinstudy.api.user.request.UserRequest
 import com.easyshop.kotlinstudy.domain.user.User
 import com.easyshop.kotlinstudy.domain.user.UserService
 import org.springframework.http.ResponseEntity
@@ -23,7 +24,7 @@ class UserController(private val testService: UserService) {
      * 유저 상세 조회
      */
     @PostMapping("/Users")
-    fun testPostApi(@RequestBody user: User) {
+    fun testPostApi(@RequestBody user: UserRequest) {
         testService.saveUser(user)
     }
 

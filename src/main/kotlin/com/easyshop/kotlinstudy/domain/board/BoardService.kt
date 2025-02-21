@@ -2,6 +2,8 @@ package com.easyshop.kotlinstudy.domain.board
 
 import com.easyshop.kotlinstudy.api.board.request.BoardRequest
 import com.easyshop.kotlinstudy.api.board.response.BoardFindResponse
+import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,6 +14,7 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
     /**
      * 전체 조회
      */
+    @QueryMapping
     fun findAll(): List<BoardFindResponse> {
         return boardRepository
             .findAll()
@@ -33,6 +36,7 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
     /**
      * board 저장
      */
+    @MutationMapping
     @Transactional
     fun saveBoard(boardRequest: BoardRequest): BoardFindResponse {
         val board = Board(boardRequest.title, boardRequest.writer)
@@ -44,6 +48,7 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
     /**
      * board 수정
      */
+    @MutationMapping
     @Transactional
     fun updateBoard(boardId: Int, boardRequest: BoardRequest) {
         val board = boardRepository
@@ -55,6 +60,7 @@ class BoardService(private val boardRepository: BoardRepository, private val boa
     /**
      * board 삭제
      */
+    @MutationMapping
     fun deleteBoard(@PathVariable id: Int) {
         boardRepository.deleteById(id.toLong())
     }

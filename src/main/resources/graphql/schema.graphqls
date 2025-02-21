@@ -1,0 +1,37 @@
+
+
+type Query{
+    getUsers: [User]
+    getUser(id: Int): UserResponse
+    findAll: [BoardFindResponse]
+    findByBoard(id: Int!): BoardFindResponse
+}
+
+type Mutation{
+    saveUser(user: UserRequest): Boolean
+
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+type BoardFindResponse {
+    id: ID!
+    title: String!
+    writer: String!
+}
+
+type UserResponse{
+    id: Int!
+    name: String!
+    emailAddress: String!
+}
+
+input UserRequest {
+    name: String!
+    email: String!
+}
+

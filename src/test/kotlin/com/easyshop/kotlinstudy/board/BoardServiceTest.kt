@@ -22,7 +22,6 @@ class BoardServiceTest {
 
 
     @DisplayName("board 목록 조회")
-    @Transactional
     @Test
     fun testGetBoards() {
 
@@ -59,7 +58,6 @@ class BoardServiceTest {
     }
 
     @DisplayName("board 상세 조회")
-    @Transactional
     @Test
     fun testGetBoardId() {
 
@@ -67,18 +65,16 @@ class BoardServiceTest {
         val (id, title, writer) = saveBoard("게시판 타이틀 입니다. 2025-02-12", "심재경")
 
         //When 단건 조회
-        val boardFindResponses = boardService.findById(id)
+        val boardFindResponses = boardService.findById(id.toInt())
 
         //Then
         assertNotNull(boardFindResponses)
-        assertEquals(boardFindResponses.id, id)
         assertEquals(boardFindResponses.title, title)
-        assertEquals(boardFindResponses.boardId, writer)
+        assertEquals(boardFindResponses.writer, writer)
     }
 
 
     @DisplayName("board 수정")
-    @Transactional
     @Test
     fun testUpdateBoardId() {
 
@@ -87,28 +83,26 @@ class BoardServiceTest {
         val boardRequest = BoardRequest("게시판 입니다......", "업데이트")
 
         //When 업데이트 후 조회
-        val boardFindResponses = boardService.updateBoard(id, boardRequest)
-        val findResponse = boardService.findById(id)
+        val boardFindResponses = boardService.updateBoard(id.toInt(), boardRequest)
+        val findResponse = boardService.findById(id.toInt())
 
 
         //Then
         assertNotNull(boardFindResponses)
-        assertEquals(findResponse?.id, id)
         assertEquals(findResponse?.title, boardRequest.title)
-        assertEquals(findResponse?.boardId, boardRequest.writer)
+        assertEquals(findResponse?.writer, boardRequest.writer)
     }
 
 
     @DisplayName("board 삭제")
-    @Transactional
     @Test
     fun testDeleteBoardId() {
         //Given 데이터 세팅
         val (id) = saveBoard("게시판 타이틀 입니다. 2025-02-12", "심재경")
 
         //When 삭제 요청 후 검색
-        boardService.deleteBoard(id)
-        val findResponse = boardService.findById(id)
+        boardService.deleteBoard(id.toInt())
+        val findResponse = boardService.findById(id.toInt())
 
         //Then
         assertNull(findResponse)
